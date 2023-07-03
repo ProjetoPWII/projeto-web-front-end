@@ -37,39 +37,39 @@ function Navbar() {
       <ul>
         <li>
           <GoSignIn size={22} color="white" />
-          <Link to="#entrar">Entrar</Link>
+          <Link to="/login">Entrar</Link>
         </li>
 
         {userType === "paciente" && (
           <>
             <li>
               <GoHome size={22} color="white" />
-              <Link to="#home">Home</Link>
+              <Link to="/">Home</Link>
             </li>
 
             <li>
               <FaRegIdCard size={22} color="white" />
-              <Link to="#perfil">Perfil</Link>
+              <Link to="/userProfile">Perfil</Link>
             </li>
 
             <li>
               <GiMedicinePills size={22} color="white" />
-              <Link to="#">Medicação</Link>
+              <Link to="/medication">Medicação</Link>
             </li>
 
             <li>
               <RiUserVoiceLine size={22} color="white" />
-              <Link to="#">Consultas</Link>
+              <Link to="/consultation">Consultas</Link>
             </li>
 
             <li>
               <IoTicket size={22} color="white" />
-              <Link to="#">Fichas</Link>
+              <Link to="/tickets">Fichas</Link>
             </li>
 
             <li>
               <FaUserMd size={22} color="white" />
-              <Link to="#">Plantões</Link>
+              <Link to="/shifts">Plantões</Link>
             </li>
 
             <li>
@@ -83,37 +83,37 @@ function Navbar() {
           <>
             <li>
               <GoHome size={22} color="white" />
-              <Link to="#home">Home</Link>
+              <Link to="/doctor">Home</Link>
             </li>
 
             <li>
               <FaRegIdCard size={22} color="white" />
-              <Link to="#perfil">Perfil</Link>
+              <Link to="/profileDoctor">Perfil</Link>
             </li>
 
             <li>
               <RiUserVoiceLine size={22} color="white" />
-              <Link to="#">Consultas</Link>
+              <Link to="/doctorConsultations">Consultas</Link>
             </li>
 
             <li>
               <FaUserMd size={22} color="white" />
-              <Link to="#">Plantões</Link>
+              <Link to="/doctorShifts">Plantões</Link>
             </li>
 
             <li>
               <FaFileSignature size={22} color="white" />
-              <Link to="#">Prescrições</Link>
+              <Link to="/prescriptions">Prescrições</Link>
             </li>
 
             <li>
               <GiMedicinePills size={22} color="white" />
-              <Link to="#">Medicações</Link>
+              <Link to="/doctorMedications">Medicações</Link>
             </li>
 
             <li>
               <TbUserHeart size={22} color="white" />
-              <Link to="#">Status do Paciente</Link>
+              <Link to="/patientStatus">Status do Paciente</Link>
             </li>
 
             <li>
