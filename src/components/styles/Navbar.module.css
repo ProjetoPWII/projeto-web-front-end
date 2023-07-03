@@ -1,0 +1,121 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 1.5em;
+  background-color: red;
+  border-right: 1px solid #4dac4c;
+  transition: all 0.5s ease;
+}
+
+.navbar_logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar img {
+  width: 40px;
+  margin-right: 0.8em;
+}
+
+.navbar h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar li,
+.navbar a {
+  text-decoration: none;
+  color: #291e1e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  padding: 0.5em 0.8em;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+}
+
+.navbar li:hover {
+  background-color: #16479d;
+  color: #fff;
+}
+
+.navbar li:hover > a {
+  color: #fff;
+}
+
+/* Personalização do tema escuro */
+.navbar-dark {
+  background-color: #453747;
+  color: #fff;
+}
+
+.navbar-dark h2 {
+  color: #fff;
+}
+
+.navbar-dark ul li a {
+  color: #fff;
+}
+
+.navbar-dark ul li:hover {
+  background-color: #555;
+}
+
+.darkModeToggle {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.darkModeToggle span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.navbar-dark .darkModeToggle span {
+  color: #fff;
+}
+
+.darkModeToggle:focus {
+  outline: none;
+}
+
+.navbar-dark li:hover > a {
+  color: #080101;
+}
+
+.iconLeft {
+  margin-right: 10px;
+}
+
+.iconLeft svg {
+  transition: transform 0.3s ease;
+}
+
+.iconLeft:hover svg {
+  transform: rotate(360deg);
+}
+
+.iconRight {
+  margin-left: 10px;
+}
+
+.iconRight svg {
+  transition: transform 0.3s ease;
+}
+
+.iconRight:hover svg {
+  transform: rotate(360deg);
+}
