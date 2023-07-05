@@ -43,11 +43,11 @@ function Login() {
           />
         </Form.Group>
 
-        <Button variant="primary">Entrar</Button>
+        <Button variant="primary"><Link className="text-white" to={`/login/${userType}`}>Ir para Login</Link></Button>
       </Form>
 
       <p>
-        Não é registrado? <Link to="/register">Clique aqui!</Link>
+        Não é registrado? <Link className="text-info" to={`/register/${userType}`}>Clique aqui!</Link>
       </p>
     </div>
   );

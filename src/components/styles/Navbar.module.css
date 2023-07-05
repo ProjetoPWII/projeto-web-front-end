@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 1em 1.5em;
-  background-color: red;
+  background-color: rgb(24, 70, 3);
   border-right: 1px solid #4dac4c;
   transition: all 0.5s ease;
 }
@@ -32,7 +32,7 @@
 .navbar li,
 .navbar a {
   text-decoration: none;
-  color: #291e1e;
+  color:white;
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s;
@@ -57,6 +57,7 @@
   color: #fff;
 }
 
+
 .navbar-dark h2 {
   color: #fff;
 }
@@ -64,6 +65,7 @@
 .navbar-dark ul li a {
   color: #fff;
 }
+
 
 .navbar-dark ul li:hover {
   background-color: #555;
