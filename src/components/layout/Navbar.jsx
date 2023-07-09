@@ -15,6 +15,7 @@ import { IoMoon } from "react-icons/io5";
 import styles from "../styles/Navbar.module.css";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { AuthPacienteContext } from "../../context/AuthContext";
+import { AuthMedContext } from "../../context/AuthMedContext";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/img/medical-team.png";
@@ -24,13 +25,16 @@ function Navbar() {
   const navigate = useNavigate()
   const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const {user, isAuthenticated, signOut } = useContext(AuthPacienteContext)
+  const {userDoctor, doctorAuthenticated, signOutDoctor } = useContext(AuthMedContext)
   const [userType, setUserType] = useState();
 
   const makeLogout = () => {
-    signOut()
+    signOutDoctor()
     window.location.reload()
 }
 
+console.log(userDoctor)
+console.log(user)
 
   const switchOnColor = "#ffbf00";
   const switchOffColor = "#d9dcd6";
@@ -83,14 +87,13 @@ function Navbar() {
               <Link to="/shifts">Plantões</Link>
             </li>
 
-            <li>
-              <GoSignOut size={22} color="white" />
-              <Button onClick={makeLogout} >Sair</Button>
+            <li> 
+              <Button onClick={makeLogout} > <GoSignOut size={22} color="white" />Sair</Button>
             </li>
           </>
         )}
 
-        {userType === "médico" && (
+        {userDoctor && (
           <>
             <li>
               <GoHome size={22} color="white" />
@@ -128,8 +131,8 @@ function Navbar() {
             </li>
 
             <li>
-              <GoSignOut size={22} color="white" />
-              <Link to="#sair">Sair</Link>
+
+              <Button onClick={makeLogout} > <GoSignOut size={22} color="white" />Sair</Button>
             </li>
           </>
         )}

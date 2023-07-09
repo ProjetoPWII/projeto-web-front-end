@@ -9,12 +9,11 @@ export const AuthPacienteContext = createContext({})
 
 export function signOut(){
     try {
-        destroyCookie(undefined,'@app-paciente.token')
+        destroyCookie(undefined,'@app_paciente.token')
     } catch (error) {
         console.log(error)
     }
 }
-
 
 export function AuthProvider({ children }) {
 
@@ -23,19 +22,20 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState()
     const isAuthenticated = !!user;
 
-
     useEffect(() => {
         const { '@app_paciente.token': token } = parseCookies()
-        if (token) {
-            api.get('/paciente')
+        if (token && user) {
+            api.get(`/paciente/detail/${user.numero_sus}`)
                 .then(response => {
-                    const { id, nome, numero_sus, endereco_id } = response.data
+                    console.log('response',response)
+                    const { nome, numero_sus, endereco_id, sexo, foto_perfil } = response.data
 
                     setUser({
-                        id,
                         nome,
                         numero_sus,
-                        endereco_id
+                        endereco_id,
+                        foto_perfil,
+                        sexo
                     })
                 })
                 .catch(e => signOut())
@@ -44,14 +44,14 @@ export function AuthProvider({ children }) {
 
     async function signIn(data) {
 
-       //data = {numero_sus, senha}
+        //data = {numero_sus, senha}
   
         try {
-            console.log('data',data)
+           // console.log('data',data)
             const response = await api.post('/login',data)
 
 
-            const { id, nome, numero_sus, endereco_id, token } = response.data
+            const { nome, numero_sus, endereco_id, token ,sexo, foto_perfil} = response.data
 
             setCookie(undefined, '@app_paciente.token', token, {
                 maxAge: 60 * 60 * 24 * 30,
@@ -60,10 +60,11 @@ export function AuthProvider({ children }) {
 
 
             setUser({
-                id,
                 nome,
                 numero_sus,
-                endereco_id
+                endereco_id,
+                sexo,
+                foto_perfil,
             })
 
             api.defaults.headers['Authorization'] = `Bearer ${token}`
@@ -75,6 +76,7 @@ export function AuthProvider({ children }) {
             console.log(error)
         }
     }
+
 
 
     async function signUp({ cpf, nome, idade, numero_sus, endereco_id, sexo, foto_perfil, senha }) {
@@ -111,8 +113,10 @@ export function AuthProvider({ children }) {
     }
 
 
+
     return (
-        <AuthPacienteContext.Provider value={{ user, isAuthenticated, signIn, signOut, signUp }}>
+        <AuthPacienteContext.Provider value={{ user, isAuthenticated, signIn,
+         signOut, signUp }}>
             {children}
         </AuthPacienteContext.Provider>
     )

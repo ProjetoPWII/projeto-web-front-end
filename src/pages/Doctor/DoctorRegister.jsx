@@ -1,22 +1,21 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { setupAPIClient } from "../../api/api"
 import { useState, useEffect } from "react"
 import { toast } from "react-toastify"
 import { useContext } from 'react'
-import { AuthPacienteContext } from '../../context/AuthContext'
+import { AuthMedContext } from '../../context/AuthMedContext'
 import { useNavigate } from 'react-router-dom'
 
-const PatientRegister = () => {
+const DoctorRegister = () => {
 
-    const { signUp } = useContext(AuthPacienteContext)
+    const {signUpDoctor} = useContext(AuthMedContext)
 
     const navigate = useNavigate()
 
 
     const [nome, setNome] = useState('')
     const [cpf, setCpf] = useState('')
-    const [numero_sus, setSus] = useState('')
+    const [crm, setCrm] = useState('')
     const [senha, setSenha] = useState('')
     const [endereco_id, setAdressId] = useState('')
     const [sexo, setSexo] = useState('')
@@ -47,9 +46,9 @@ const PatientRegister = () => {
             cpf,
             nome,
             idade,
-            numero_sus,
-            endereco_id,
             sexo,
+            crm,
+            endereco_id,
             foto_perfil,
             senha
         }
@@ -57,7 +56,7 @@ const PatientRegister = () => {
         console.log(data)
 
         try {
-            await signUp(data)
+            await signUpDoctor(data)
             console.log(data)
             toast.success('Cadastro realizado!')
             navigate('/login')
@@ -73,7 +72,7 @@ const PatientRegister = () => {
         <div className='d-flex justify-content-center"'>
 
             <form onSubmit={handleSignUp} className='container d-flex flex-column' encType="multipart/form-data">
-                <h3>Cadastro de Paciente</h3>
+                <h3>Cadastro de Médico</h3>
                 <div className="row">
                     <div className="col-xl-6 col-sm-12">
                         <label htmlFor="cpfInput">CPF:</label>
@@ -89,8 +88,8 @@ const PatientRegister = () => {
                         <input onChange={(e) => setIdade(e.target.value)} name='idade' id='inputIdade' type="number" className="form-control" placeholder="Informe sua idade" />
                     </div>
                     <div className="col-xl-6 col-sm-12">
-                        <label htmlFor="inputSus">Número do SUS:</label>
-                        <input onChange={(e) => setSus(e.target.value)} id='inputSus' name='numero_sus' type="text" className="form-control" placeholder="Informe o número do cartão SUS" />
+                        <label htmlFor="inputCrm">CRM:</label>
+                        <input onChange={(e) => setCrm(e.target.value)} id='inputCrm' name='crm' type="text" className="form-control" placeholder="Informe o número do cartão SUS" />
                     </div>
 
                     <div className="col-xl-6 col-sm-12 p-3">
@@ -127,4 +126,4 @@ const PatientRegister = () => {
     )
 }
 
-export default PatientRegister
+export default DoctorRegister

@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap"
 
 
 
-const PatientAddress = () => {
+const DoctorAddress = () => {
 
     const [address, setAdress] = useState()
 
@@ -49,7 +49,7 @@ const PatientAddress = () => {
             // httpConfig(data, 'POST')
             //  window.flash('Endereço cadastrado com sucesso!', 'success')
             toast.success('Endereço cadastrado com sucesso!')
-            navigate('/register/paciente')
+            navigate('/register/médico')
 
         } catch (error) {
             toast.error('Erro ao cadastrar endereço!')
@@ -65,11 +65,11 @@ const PatientAddress = () => {
         <form onSubmit={handleSubmit} className="row g-3 p-5">
 
             <h4 className='text-white'>Por favor, informe primeiro seu endereço antes de prosseguir com o cadastro</h4>
-            <div className="col-12">
+            <div className="col-md-6">
                 <label htmlFor="inputAddress" className="form-label">Cidade:</label>
                 <input onChange={(e) => handleAdress(e)} name='cidade' type="text" className="form-control" id="inputAddress" placeholder="Nome da cidade" required />
             </div>
-            <div className="col-12">
+            <div className="col-md-6">
                 <label htmlFor="inputAddress2" className="form-label">Estado:</label>
                 <input onChange={(e) => handleAdress(e)} name='estado' type="text" className="form-control" id="inputAddress2" placeholder="Nome da rua" required />
             </div>
@@ -77,15 +77,15 @@ const PatientAddress = () => {
                 <label htmlFor="inputCity" className="form-label">Bairro:</label>
                 <input onChange={(e) => handleAdress(e)} name='bairro' type="text" className="form-control" id="inputCity" placeholder='Nome do bairro' required />
             </div>
-            <div className="col-12">
+            <div className="col-md-6">
                 <label htmlFor="inputAddress2" className="form-label">Rua:</label>
                 <input onChange={(e) => handleAdress(e)} name='rua' type="text" className="form-control" id="inputAddress2" placeholder="Nome da rua" required />
             </div>
-            <div className="col-12">
-            <Button className="text-white" variant="primary">Cadastrar</Button>
+            <div className="col-md-6">
+            <Button type="submit" className="text-white" variant="primary">Cadastrar</Button>
             </div>
         </form>
     )
 }
 
-export default PatientAddress
+export default DoctorAddress

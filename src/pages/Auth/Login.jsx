@@ -47,7 +47,7 @@ function Login() {
       </Form>
 
       <p>
-        Não é registrado? <Link className="text-info" to={`/register/${userType}`}>Clique aqui!</Link>
+        Não é registrado? <Link className="text-info" to={`/register`}>Clique aqui!</Link>
       </p>
     </div>
   );

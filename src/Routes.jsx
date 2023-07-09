@@ -27,31 +27,36 @@ import DoctorShifts from "./pages/Doctor/DoctorShifts";
 import DoctorPrescriptions from "./pages/Doctor/DoctorPrescriptions";
 import DoctorMedications from "./pages/Doctor/DoctorMedications";
 import PatientStatus from "./pages/Doctor/PatientStatus";
+import DoctorAddress from "./pages/Doctor/DoctorAdress";
+import DoctorRegister from "./pages/Doctor/DoctorRegister";
+import DoctorLogin from "./pages/Doctor/DoctorLogin";
 
 /* Contexts */
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { AuthProvider, AuthPacienteContext } from "./context/AuthContext";
+import { AuthMedProvider, AuthMedContext } from "./context/AuthMedContext";
 
 export default function AppRoutes() {
 
   const { user } = useContext(AuthPacienteContext)
-
+  const {userDoctor} = useContext(AuthMedContext)
 
 
   return (
     <DarkModeProvider>
       <AuthProvider>
+        <AuthMedProvider>
           <BrowserRouter>
             <Navbar />
             <Container>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={ <Register /> } />
+                <Route path="/register" element={<Register />} />
                 <Route path="*" element={<Error />} />
 
                 {/* Rotas referente aos pacientes */}
-                <Route path="/userProfile" element={ user ? <Profile /> : <Error/>} />
+                <Route path="/userProfile" element={user ? <Profile /> : <Error />} />
                 <Route path="/medication" element={<Medication />} />
                 <Route path="/consultation" element={<Consultation />} />
                 <Route path="/tickets" element={<Tickets />} />
@@ -62,7 +67,10 @@ export default function AppRoutes() {
 
                 {/* Rotas referente aos médicos*/}
                 <Route path="/doctor" element={<HomeDoctor />} />
-                <Route path="/profileDoctor" element={<ProfileDoctor />} />
+                <Route path="/profileDoctor" element={ userDoctor? <ProfileDoctor /> : <Error/>} />
+                <Route path="/register-endereco/médico" element={<DoctorAddress />} />
+                <Route path="/register/médico" element={<DoctorRegister/>} />
+                <Route path="/login/médico" element={<DoctorLogin/>} />
                 <Route
                   path="/doctorConsultations"
                   element={<DoctorConsultation />}
@@ -75,6 +83,7 @@ export default function AppRoutes() {
             </Container>
             <Footer />
           </BrowserRouter>
+        </AuthMedProvider>
       </AuthProvider>
     </DarkModeProvider>
   );
