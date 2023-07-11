@@ -11,7 +11,7 @@ export function setupAPIClient(ctx = undefined){
     const api = axios.create({
         baseURL:'http://localhost:3003',
         headers:{
-            Authorization:`Bearer ${cookies['@app.token']}`,
+            Authorization:`Bearer ${cookies['@app_paciente.token']? cookies['@app_paciente.token']:cookies['@app_medico.token']}`,
         }
     })
 

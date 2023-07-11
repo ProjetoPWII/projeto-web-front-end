@@ -13,18 +13,7 @@ const DoctorLogin = () => {
   const [crm, setCrm] = useState("");
   const [senha, setSenha] = useState("");
 
-<<<<<<< HEAD
-  async function handleLogin(e) {
-    e.preventDefault();
-=======
-    const { signInDoctor } = useContext(AuthMedContext)
-
-
-
-    const [crm, setCrm] = useState('')
-    const [senha, setSenha] = useState('')
-
-
+  
     async function handleLogin(e) {
 
         e.preventDefault()
@@ -40,30 +29,6 @@ const DoctorLogin = () => {
         
         console.log(userData)
 
-
-        try {
-
-            await signInDoctor(userData)
-            toast.success('Login realizado!')
-            navigate('/doctor')
-
-        } catch (error) {
-            console.log(error)
-            toast.error('Erro ao efetuar Login!')
-        }
-
->>>>>>> 63b50c1e6564f3a99e505178f35aa270339022d3
-
-    if (crm === "" || senha === "") {
-      return;
-    }
-
-    const userData = {
-      crm,
-      senha,
-    };
-
-    console.log(userData);
 
     try {
       await signInDoctor(userData);
@@ -92,24 +57,6 @@ const DoctorLogin = () => {
             />
           </div>
 
-<<<<<<< HEAD
-          <div className="col-xl-6 col-sm-12">
-            <label htmlFor="inputSenha">Senha:</label>
-            <input
-              onChange={(e) => setSenha(e.target.value)}
-              id="inputSenha"
-              name="senha"
-              type="password"
-              className="form-control"
-              placeholder="Informe sua senha"
-            />
-          </div>
-          <div className="row">
-            <div className="col-xl-6 col-sm-12 p-3">
-              <Button type="submit">Entrar</Button>
-            </div>
-          </div>
-=======
             <form onSubmit={handleLogin} className='container d-flex flex-column'>
                 <h3>Login de Médico</h3>
                 <div className="row">
@@ -131,7 +78,6 @@ const DoctorLogin = () => {
 
                 </div>
             </form>
->>>>>>> 63b50c1e6564f3a99e505178f35aa270339022d3
         </div>
       </form>
     </div>
