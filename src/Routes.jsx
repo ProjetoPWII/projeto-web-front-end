@@ -18,6 +18,7 @@ import Shifts from "./pages/Patient/Shifts";
 import PatientRegister from "./pages/Patient/PatientRegister";
 import PatientAddress from "./pages/Patient/PatientAddress";
 import PatientLogin from "./pages/Patient/PatientLogin";
+import ConsultaRegister from "./pages/Patient/ConsultaRegister";
 
 /* Pages Médicas */
 import HomeDoctor from "./pages/Doctor/HomeDoctor";
@@ -30,6 +31,8 @@ import PatientStatus from "./pages/Doctor/PatientStatus";
 import DoctorAddress from "./pages/Doctor/DoctorAdress";
 import DoctorRegister from "./pages/Doctor/DoctorRegister";
 import DoctorLogin from "./pages/Doctor/DoctorLogin";
+
+
 
 /* Contexts */
 import { DarkModeProvider } from "./context/DarkModeContext";
@@ -64,6 +67,7 @@ export default function AppRoutes() {
                 <Route path="/register/paciente" element={<PatientRegister />} />
                 <Route path="/register-endereco/paciente" element={<PatientAddress />} />
                 <Route path="/login/paciente" element={<PatientLogin />} />
+                <Route path="/consulta/new" element={<ConsultaRegister />} />
 
                 {/* Rotas referente aos médicos*/}
                 <Route path="/doctor" element={<HomeDoctor />} />
