@@ -6,14 +6,14 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const DoctorLogin = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const { signInDoctor } = useContext(AuthMedContext);
+    const { signInDoctor } = useContext(AuthMedContext);
 
-  const [crm, setCrm] = useState("");
-  const [senha, setSenha] = useState("");
+    const [crm, setCrm] = useState("");
+    const [senha, setSenha] = useState("");
 
-  
+
     async function handleLogin(e) {
 
         e.preventDefault()
@@ -26,37 +26,22 @@ const DoctorLogin = () => {
             crm,
             senha
         }
-        
+
         console.log(userData)
 
 
-    try {
-      await signInDoctor(userData);
-      toast.success("Login realizado!");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      toast.error("Erro ao efetuar Login!");
+        try {
+            await signInDoctor(userData);
+            toast.success("Login realizado!");
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+            toast.error("Erro ao efetuar Login!");
+        }
     }
-  }
 
-  return (
-    <div className='d-flex justify-content-center"'>
-      <form onSubmit={handleLogin} className="container d-flex flex-column">
-        <h3>Login de Paciente</h3>
-        <div className="row">
-          <div className="col-xl-6 col-sm-12">
-            <label htmlFor="inputCrm">CRM:</label>
-            <input
-              onChange={(e) => setCrm(e.target.value)}
-              id="inputCrm"
-              name="crm"
-              type="text"
-              className="form-control"
-              placeholder="Informe o número do CRM"
-            />
-          </div>
-
+    return (
+        <div className='d-flex justify-content-center"'>
             <form onSubmit={handleLogin} className='container d-flex flex-column'>
                 <h3>Login de Médico</h3>
                 <div className="row">
@@ -74,14 +59,10 @@ const DoctorLogin = () => {
                             <Button type='submit'>Entrar</Button>
                         </div>
                     </div>
-
-
                 </div>
             </form>
         </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default DoctorLogin;

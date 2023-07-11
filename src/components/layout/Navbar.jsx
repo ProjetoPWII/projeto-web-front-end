@@ -29,10 +29,16 @@ function Navbar() {
     useContext(AuthMedContext);
   // const [userType, setUserType] = useState();
 
-  // const makeLogout = () => {
-  //   signOutDoctor();
-  //   window.location.reload();
-  // };
+  const makeLogout = () => {
+    signOut();
+    window.location.reload();
+  };
+
+
+  const makeDoctorLogout = () => {
+    signOutDoctor();
+    window.location.reload();
+  };
 
   console.log(userDoctor);
   console.log(user);
@@ -89,8 +95,7 @@ function Navbar() {
             </li>
 
             <li>
-              <Button onClick={signOut}>
-                {" "}
+              <Button onClick={makeLogout}>
                 <GoSignOut size={22} color="white" />
                 Sair
               </Button>
@@ -134,8 +139,7 @@ function Navbar() {
             </li>
 
             <li>
-              <Button onClick={signOutDoctor}>
-                {" "}
+              <Button onClick={makeDoctorLogout}>
                 <GoSignOut size={22} color="white" />
                 Sair
               </Button>
