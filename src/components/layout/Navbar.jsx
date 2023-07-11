@@ -16,13 +16,13 @@ import styles from "../styles/Navbar.module.css";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { AuthPacienteContext } from "../../context/AuthContext";
 import { AuthMedContext } from "../../context/AuthMedContext";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/img/medical-team.png";
 import { Button } from "react-bootstrap";
 
 function Navbar() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const { user, isAuthenticated, signOut } = useContext(AuthPacienteContext);
   const { userDoctor, doctorAuthenticated, signOutDoctor } =
@@ -31,13 +31,16 @@ function Navbar() {
 
   const makeLogout = () => {
     signOut();
-    window.location.reload();
-  };
 
+    window.location.reload();
+    navigate("/login");
+  };
 
   const makeDoctorLogout = () => {
     signOutDoctor();
+
     window.location.reload();
+    navigate("/login");
   };
 
   console.log(userDoctor);
