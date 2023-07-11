@@ -24,8 +24,9 @@ function Login() {
       <p>{loginText}</p>
 
       <Form className="d-inline-block">
-        <Form.Group controlId="userType">
+        <Form.Group className="mb-4" controlId="userType">
           <Form.Check
+            className="form-check-inline"
             type="radio"
             name="userType"
             value="paciente"
@@ -34,6 +35,7 @@ function Login() {
             onChange={() => setUserType("paciente")}
           />
           <Form.Check
+            className="form-check-inline"
             type="radio"
             name="userType"
             value="médico"
@@ -43,11 +45,18 @@ function Login() {
           />
         </Form.Group>
 
-        <Button variant="primary"><Link className="text-white" to={`/login/${userType}`}>Ir para Login</Link></Button>
+        <Button className="mb-3" variant="primary">
+          <Link className="text-white" to={`/login/${userType}`}>
+            Ir para Login
+          </Link>
+        </Button>
       </Form>
 
       <p>
-        Não é registrado? <Link className="text-info" to={`/register`}>Clique aqui!</Link>
+        Não é registrado?{" "}
+        <Link className="text-info" to={`/register`}>
+          Clique aqui!
+        </Link>
       </p>
     </div>
   );

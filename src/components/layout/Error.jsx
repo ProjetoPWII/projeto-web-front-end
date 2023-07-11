@@ -1,29 +1,35 @@
-// import { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import ErrorImage from "../../assets/img/404.svg";
 import AccessError from "../../assets/img/401 Error.svg";
+import { AuthPacienteContext } from "../../context/AuthContext";
+import { AuthMedContext } from "../../context/AuthMedContext";
 
 const Error = () => {
+  const { isAuthenticated } = useContext(AuthPacienteContext);
+  const { doctorAuthenticated } = useContext(AuthMedContext);
+
   return (
     <>
       <div className="error">
-        <div>
-          <img src={ErrorImage} alt="imagem de erro" />
-          <h2>PAGE NOT FOUND</h2>
-          <p>
-            <Link to="/">Retorne para a página inicial</Link>
-          </p>
-        </div>
-      </div>
-      <div className="acesso-negado">
-        <div>
-          <img src={AccessError} alt="imagem de erro" />
-          <h2>ACESSO NÃO AUTORIZADO</h2>
-          <p>
-            <Link to="/login">Realize o login para ter acesso</Link>
-          </p>
-        </div>
+        {isAuthenticated || doctorAuthenticated ? (
+          <div>
+            <img src={ErrorImage} alt="imagem de erro" />
+            <h2>PAGE NOT FOUND</h2>
+            <p>
+              <Link to="/">Retorne para a página inicial</Link>
+            </p>
+          </div>
+        ) : (
+          <div className="acesso-negado">
+            <img src={AccessError} alt="imagem de erro" />
+            <h2>ACESSO NÃO AUTORIZADO</h2>
+            <p>
+              <Link to="/login">Realize o login para ter acesso</Link>
+            </p>
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Switch from "react-switch";
 
 import { GoHome, GoSignIn, GoSignOut } from "react-icons/go";
@@ -16,25 +16,26 @@ import styles from "../styles/Navbar.module.css";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { AuthPacienteContext } from "../../context/AuthContext";
 import { AuthMedContext } from "../../context/AuthMedContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/img/medical-team.png";
 import { Button } from "react-bootstrap";
 
 function Navbar() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
-  const {user, isAuthenticated, signOut } = useContext(AuthPacienteContext)
-  const {userDoctor, doctorAuthenticated, signOutDoctor } = useContext(AuthMedContext)
-  const [userType, setUserType] = useState();
+  const { user, isAuthenticated, signOut } = useContext(AuthPacienteContext);
+  const { userDoctor, doctorAuthenticated, signOutDoctor } =
+    useContext(AuthMedContext);
+  // const [userType, setUserType] = useState();
 
-  const makeLogout = () => {
-    signOutDoctor()
-    window.location.reload()
-}
+  // const makeLogout = () => {
+  //   signOutDoctor();
+  //   window.location.reload();
+  // };
 
-console.log(userDoctor)
-console.log(user)
+  console.log(userDoctor);
+  console.log(user);
 
   const switchOnColor = "#ffbf00";
   const switchOffColor = "#d9dcd6";
@@ -43,19 +44,19 @@ console.log(user)
     ? `${styles.navbar} ${styles["navbar-dark"]}`
     : styles.navbar;
 
+  console.log(isAuthenticated);
+  console.log(doctorAuthenticated);
+
   return (
     <nav className={navbarClassName}>
       <div className={styles.navbar_logo}>
         <img src={Logo} alt="logo" />
-        <h2><Link to={'/'}>MedSaúde</Link></h2>
+        <h2>
+          <Link to={"/"}>MedSaúde</Link>
+        </h2>
       </div>
       <ul>
-        <li>
-          <GoSignIn size={22} color="white" />
-          <Link to="/login">Entrar</Link>
-        </li>
-
-        {user && (
+        {user ? (
           <>
             <li>
               <GoHome size={22} color="white" />
@@ -87,13 +88,15 @@ console.log(user)
               <Link to="/shifts">Plantões</Link>
             </li>
 
-            <li> 
-              <Button onClick={makeLogout} > <GoSignOut size={22} color="white" />Sair</Button>
+            <li>
+              <Button onClick={signOut}>
+                {" "}
+                <GoSignOut size={22} color="white" />
+                Sair
+              </Button>
             </li>
           </>
-        )}
-
-        {userDoctor && (
+        ) : userDoctor ? (
           <>
             <li>
               <GoHome size={22} color="white" />
@@ -131,8 +134,18 @@ console.log(user)
             </li>
 
             <li>
-
-              <Button onClick={makeLogout} > <GoSignOut size={22} color="white" />Sair</Button>
+              <Button onClick={signOutDoctor}>
+                {" "}
+                <GoSignOut size={22} color="white" />
+                Sair
+              </Button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <GoSignIn size={22} color="white" />
+              <Link to="/login">Entrar</Link>
             </li>
           </>
         )}
@@ -157,7 +170,7 @@ console.log(user)
           <IoMoon size={26} color={switchOffColor} />
         </div>
       </div>
-{/* 
+      {/* 
       <div className={styles.userTypeToggle}>
         <div className={styles.radioGroup}>
           <input

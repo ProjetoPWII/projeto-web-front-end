@@ -24,8 +24,9 @@ function Register() {
       <p>{registerText}</p>
 
       <Form className="d-inline-block">
-        <Form.Group controlId="userType">
+        <Form.Group className="mb-4" controlId="userType">
           <Form.Check
+            className="form-check-inline"
             type="radio"
             name="userType"
             value="paciente"
@@ -34,6 +35,7 @@ function Register() {
             onChange={() => setUserType("paciente")}
           />
           <Form.Check
+            className="form-check-inline"
             type="radio"
             name="userType"
             value="médico"
@@ -43,11 +45,18 @@ function Register() {
           />
         </Form.Group>
 
-        <Button variant="primary"><Link className="text-white" to={`/register-endereco/${userType}`}>Cadastrar</Link></Button>
+        <Button className="mb-3" variant="primary">
+          <Link className="text-white" to={`/register-endereco/${userType}`}>
+            Cadastrar
+          </Link>
+        </Button>
       </Form>
 
       <p>
-        Já é registrado? <Link className="text-info" to="/login">Clique aqui!</Link>
+        Já é registrado?{" "}
+        <Link className="text-info" to="/login">
+          Clique aqui!
+        </Link>
       </p>
     </div>
   );
