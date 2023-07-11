@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from "../api/apiClient";
-
+import jwt_decode from "jwt-decode";
 
 
 export const AuthMedContext = createContext({})
@@ -24,12 +24,13 @@ export function AuthMedProvider({ children }) {
 
     useEffect(() => {
         const { '@app_medico.token': token } = parseCookies()
-        if (token && userDoctor) {
-            api.get(`/medico/detail/${userDoctor.crm}`)
+        if (token) {
+            console.log('token medico',token)
+            api.get(`/medico/detail/${jwt_decode(token).numero_sus}`)
                 .then(response => {
                     const { nome, crm, endereco_id, sexo, foto_perfil} = response.data
 
-                    setUser({
+                    setUserDoctor({
                         nome,
                         crm,
                         endereco_id,
@@ -37,7 +38,7 @@ export function AuthMedProvider({ children }) {
                         foto_perfil
                     })
                 })
-                .catch(e => signOutDoctor())
+                .catch(e => console.log(e))
         }
     }, [])
 

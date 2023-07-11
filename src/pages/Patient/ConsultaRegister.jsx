@@ -12,7 +12,7 @@ const ConsultaRegister = () => {
 
     const { user } = useContext(AuthPacienteContext)
 
-  //  console.log('userrrr', user)
+    //  console.log('userrrr', user)
 
     const sus = user.numero_sus
 
@@ -22,21 +22,34 @@ const ConsultaRegister = () => {
         async function getPlantoes() {
             const resp = await apiClient.get('/plantoes')
             // console.log(resp.data[0].data)
-            const d = new Date(resp.data[0].data)
+       //     const d = new Date(resp.data[0].data)
 
             const actualDay = new Date()
+           // const day = actualDay.getDay()
+            const month = actualDay.getMonth()
 
-            console.log('resposta', resp.data)
+            console.log('resposta', (resp.data))
 
-            for (let plantao of resp.data) {
-                plantao['data'] = new Date(plantao['data'])
-                if (plantao['data'] >= actualDay) {
-                  //  plantoes.push(plantao)
-                  setPlantoes([...plantao,plantao])
+            for (let i = 0; i < resp.data.length; i++) {
+                resp.data[i]['data'] = new Date(resp.data[i]['data'])
+                console.log(   resp.data[i]['data'].getMonth(), month)
+                if (resp.data[i]['data'].getMonth() >= month) {
+                    //  plantoes.push(plantao)
+                    setPlantoes([...plantoes, resp.data[i]])
                 }
             }
 
-          
+
+
+            // for (let plantao of resp.data) {
+            //     plantao['data'] = new Date(plantao['data'])
+            //     if (plantao['data'] >= actualDay) {
+            //       //  plantoes.push(plantao)
+            //       setPlantoes([...plantao,plantao])
+            //     }
+            // }
+
+
 
             const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
 
@@ -64,16 +77,34 @@ const ConsultaRegister = () => {
 
     }, [])
 
-    console.log('plantoes',plantoes)
+    console.log('plantoes', plantoes)
 
 
     //  const [sus, setSus] = useState('')
 
     const navigate = useNavigate()
 
-    const handleConsulta = async (e) => {
+    const handleConsulta = async (data, crm) => {
 
-        e.preventDefault()
+        // e.preventDefault()
+
+        const apiClient = setupAPIClient()
+
+       const  resp = await apiClient.post('/ficha', {numero_sus:sus})
+
+
+
+
+        const consulta = {
+            status:'A realizar',
+            id_ficha: resp.data['id'],
+            numero_sus:sus,
+            medico_crm:crm,
+            data_plantao:data
+        }
+
+
+        
 
         console.log(e.target.value)
 
@@ -81,19 +112,19 @@ const ConsultaRegister = () => {
 
 
     return (
-        <div className='d-flex justify-content-center"'>
-            <h3>Agendar consulta</h3>
-            <form onSubmit={handleConsulta} className='container d-flex flex-column' encType="multipart/form-data">
+        <div className='d-flex justify-content-center flex-column'>
+            <div className='container d-flex flex-row flex-wrap'>
 
                 {plantoes && plantoes.map(
                     (plantao) => (
 
-                        <div className="card" style={{ width: "18rem" }}>
-                            <img class="card-img-top" src="..." alt="Card image cap" />
-                            <div class="card-body">
-                                <h5 class="card-title">{`Dia ${plantao['data'].getDate()}`}</h5>
-                                <p class="card-text">{`Médico CRM:${plantao['medico_crm']}`}</p>
-                                <a href="#" class="btn btn-primary">Agendar</a>
+                        <div className="card m-2" style={{ width: "18rem" }}>
+                            <img className="card-img-top" src="https://assets-global.website-files.com/5d3ac7a15216e366e6929e20/623c5e44f4cf108ae645f218_male%20medic%20AandE%20-01.png" alt="Card image cap" />
+                            <div className="card-body">
+                                <h5 className="card-title">{`Dia ${plantao['data'].getDate()}`}</h5>
+                                <p className="card-text">{`Médico CRM:${plantao['medico_crm']}`}</p>
+                                <p className="card-text">{`Atendimentos:${plantao['num_atendimentos']}`}</p>
+                                <a onClick={handleConsulta(plantao['data'], plantao['medico_crm'])} href="#" className="btn btn-primary">Agendar</a>
                             </div>
                         </div>
 
@@ -124,7 +155,7 @@ const ConsultaRegister = () => {
                         </div>
                     </div>
                 </div> */}
-            </form>
+            </div>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState, useEffect } from "react";
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from "../api/apiClient";
 import jwt_decode from "jwt-decode";
-// const jwt_decode = require('jwt-decode');
+
 
 
 
@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
         const { '@app_paciente.token': token } = parseCookies()
     //    console.log(token)
         if (token) {
-            console.log('token:')
             api.get(`/paciente/detail/${jwt_decode(token).numero_sus}`)
                 .then(response => {
                     console.log('response',response)
