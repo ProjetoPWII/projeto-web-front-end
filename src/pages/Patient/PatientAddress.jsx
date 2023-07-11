@@ -82,7 +82,7 @@ const PatientAddress = () => {
                 <input onChange={(e) => handleAdress(e)} name='rua' type="text" className="form-control" id="inputAddress2" placeholder="Nome da rua" required />
             </div>
             <div className="col-12">
-            <Button className="text-white" variant="primary">Cadastrar</Button>
+            <Button type="submit" className="text-white" variant="primary">Cadastrar</Button>
             </div>
         </form>
     )

@@ -39,7 +39,7 @@ const DoctorLogin = () => {
 
             await signInDoctor(userData)
             toast.success('Login realizado!')
-            navigate('/')
+            navigate('/doctor')
 
         } catch (error) {
             console.log(error)
@@ -56,7 +56,7 @@ const DoctorLogin = () => {
         <div className='d-flex justify-content-center"'>
 
             <form onSubmit={handleLogin} className='container d-flex flex-column'>
-                <h3>Login de Paciente</h3>
+                <h3>Login de Médico</h3>
                 <div className="row">
                     <div className="col-xl-6 col-sm-12">
                         <label htmlFor="inputCrm">CRM:</label>
