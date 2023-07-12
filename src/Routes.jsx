@@ -44,8 +44,6 @@ export default function AppRoutes() {
 
   return (
     <DarkModeProvider>
-      <AuthProvider>
-        <AuthMedProvider>
           <BrowserRouter>
             <Navbar />
             <Container>
@@ -56,7 +54,7 @@ export default function AppRoutes() {
                 <Route path="*" element={<Error />} />
 
                 {/* Rotas referente aos pacientes */}
-                <Route path="/userProfile" element={<Profile />} />
+                <Route path="/userProfile" element={ user? <Profile /> : <Error/>} />
                 <Route path="/medication" element={<Medication />} />
                 <Route path="/consultation" element={<Consultation />} />
                 <Route path="/tickets" element={<Tickets />} />
@@ -70,7 +68,7 @@ export default function AppRoutes() {
                   element={<PatientAddress />}
                 />
                 <Route path="/login/paciente" element={<PatientLogin />} />
-                <Route path="/consulta/new" element={<ConsultaRegister />} />
+                <Route path="/consulta/new" element={user ? <ConsultaRegister /> : <Error/>} />
                 <Route path="/consulta/:id" element={<Consulta />} />
 
                 {/* Rotas referente aos médicos*/}
@@ -106,8 +104,6 @@ export default function AppRoutes() {
             </Container>
             <Footer />
           </BrowserRouter>
-        </AuthMedProvider>
-      </AuthProvider>
     </DarkModeProvider>
   );
 }

@@ -3,7 +3,7 @@ import { destroyCookie, setCookie, parseCookies } from "nookies";
 import { api } from "../api/apiClient";
 import jwt_decode from "jwt-decode";
 
-export const AuthPacienteContext = createContext({});
+export const AuthPacienteContext = createContext();
 
 export function signOut() {
   try {
