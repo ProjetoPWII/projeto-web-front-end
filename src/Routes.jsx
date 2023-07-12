@@ -33,18 +33,14 @@ import DoctorAddress from "./pages/Doctor/DoctorAdress";
 import DoctorRegister from "./pages/Doctor/DoctorRegister";
 import DoctorLogin from "./pages/Doctor/DoctorLogin";
 
-
-
 /* Contexts */
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { AuthProvider, AuthPacienteContext } from "./context/AuthContext";
 import { AuthMedProvider, AuthMedContext } from "./context/AuthMedContext";
 
 export default function AppRoutes() {
-
-  const { user, isAuthenticated } = useContext(AuthPacienteContext)
-  const {userDoctor} = useContext(AuthMedContext)
-
+  const { user, isAuthenticated } = useContext(AuthPacienteContext);
+  const { userDoctor } = useContext(AuthMedContext);
 
   return (
     <DarkModeProvider>
@@ -65,25 +61,46 @@ export default function AppRoutes() {
                 <Route path="/consultation" element={<Consultation />} />
                 <Route path="/tickets" element={<Tickets />} />
                 <Route path="/shifts" element={<Shifts />} />
-                <Route path="/register/paciente" element={<PatientRegister />} />
-                <Route path="/register-endereco/paciente" element={<PatientAddress />} />
+                <Route
+                  path="/register/paciente"
+                  element={<PatientRegister />}
+                />
+                <Route
+                  path="/register-endereco/paciente"
+                  element={<PatientAddress />}
+                />
                 <Route path="/login/paciente" element={<PatientLogin />} />
                 <Route path="/consulta/new" element={<ConsultaRegister />} />
                 <Route path="/consulta/:id" element={<Consulta />} />
 
                 {/* Rotas referente aos médicos*/}
                 <Route path="/doctor" element={<HomeDoctor />} />
-                <Route path="/profileDoctor" element={ userDoctor? <ProfileDoctor /> : <Error/>} />
-                <Route path="/register-endereco/médico" element={<DoctorAddress />} />
-                <Route path="/register/médico" element={<DoctorRegister/>} />
-                <Route path="/login/médico" element={<DoctorLogin/>} />
+                <Route
+                  path="/profileDoctor"
+                  element={userDoctor ? <ProfileDoctor /> : <Error />}
+                />
+                <Route
+                  path="/register-endereco/médico"
+                  element={<DoctorAddress />}
+                />
+                <Route path="/register/médico" element={<DoctorRegister />} />
+                <Route path="/login/médico" element={<DoctorLogin />} />
                 <Route
                   path="/doctorConsultations"
-                  element={ userDoctor? <DoctorConsultation /> : <Error/>}
+                  element={userDoctor ? <DoctorConsultation /> : <Error />}
                 />
-                <Route path="/doctorShifts" element={ userDoctor? <DoctorShifts /> : <Error/>} />
-                <Route path="/prescriptions" element={ userDoctor? <DoctorPrescriptions /> : <Error/>} />
-                <Route path="/doctorMedications" element={userDoctor? <DoctorMedications /> : <Error/>} />
+                <Route
+                  path="/doctorShifts"
+                  element={userDoctor ? <DoctorShifts /> : <Error />}
+                />
+                <Route
+                  path="/prescriptions"
+                  element={userDoctor ? <DoctorPrescriptions /> : <Error />}
+                />
+                <Route
+                  path="/doctorMedications"
+                  element={userDoctor ? <DoctorMedications /> : <Error />}
+                />
                 <Route path="/patientStatus" element={<PatientStatus />} />
               </Routes>
             </Container>
