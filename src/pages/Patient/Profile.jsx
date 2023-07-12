@@ -1,10 +1,11 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { setupAPIClient } from "../../api/api";
+import { AuthPacienteContext } from "../../context/AuthContext";
 
 function Profile() {
   const { isDarkMode } = useContext(DarkModeContext);
-  const [user, setUser] = useState(null);
+  const { user, isAuthenticated } = useContext(AuthPacienteContext);
 
   const containerClassName = isDarkMode ? "dark-container" : "";
 
@@ -16,7 +17,7 @@ function Profile() {
         const response = await apiClient.get(
           `/paciente/detail/${user.numero_sus}`
         );
-        setUser(response.data);
+        user(response.data);
       } catch (error) {
         console.log("Erro ao buscar perfil do usuário:", error);
       }
