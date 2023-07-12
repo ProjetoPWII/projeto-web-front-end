@@ -31,16 +31,16 @@ function Navbar() {
 
   const makeLogout = () => {
     signOut();
-
+   // navigate("/login");
     window.location.reload();
-    navigate("/login");
+
   };
 
   const makeDoctorLogout = () => {
     signOutDoctor();
+   // navigate("/login");
+   window.location.reload();
 
-    window.location.reload();
-    navigate("/login");
   };
 
   console.log(userDoctor);

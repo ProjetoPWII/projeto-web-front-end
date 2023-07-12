@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const { isDarkMode } = useContext(DarkModeContext);
-  const { user } = useContext(AuthPacienteContext)
+  const { user, isAuthenticated } = useContext(AuthPacienteContext)
   const apiClient = setupAPIClient()
   const [consultas, setConsultas] = useState([])
   const [proximaConsulta, setProximaConsulta] = useState(null)
@@ -57,7 +57,7 @@ function Home() {
             }
           }
         }
-        setProximaConsulta({ maiorData, crm, status,id })
+        setProximaConsulta({ maiorData, crm, status, id })
       }
 
 
@@ -68,20 +68,20 @@ function Home() {
   }, [consultas])
 
 
- const consultaDetail = async () => {
+  const consultaDetail = async () => {
     navigate(`/consulta/${proximaConsulta.id}`)
- }
+  }
 
- //console.log(proximaConsulta.maiorData['data_plantao'])
+  //console.log(proximaConsulta.maiorData['data_plantao'])
   const containerClassName = isDarkMode ? "dark-container" : "";
   return (
     <div className={`text-center display-2 ${containerClassName}`}>
-      <h3 style={{ alignSelf: 'flex-start' }}>Próxima consulta:</h3>
-      {user && proximaConsulta && (
-        <>
 
-          <div onClick={()=>consultaDetail()} className="d-flex  justify-content-center align-items-center flex-wrap">
-            <div style={{ width: "18rem",cursor:'pointer' }} className="card m-2 bg-dark text-white">
+      {isAuthenticated && proximaConsulta && (
+        <>
+          <h3 style={{ alignSelf: 'flex-start' }}>Próxima consulta:</h3>
+          <div onClick={() => consultaDetail()} className="d-flex  justify-content-center align-items-center flex-wrap">
+            <div style={{ width: "18rem", cursor: 'pointer' }} className="card m-2 bg-dark text-white">
               <img className="card-img-top" src="https://assets-global.website-files.com/5d3ac7a15216e366e6929e20/623c5e44f4cf108ae645f218_male%20medic%20AandE%20-01.png" alt="Card image cap" />
               <div className="card-body">
                 <h5 className="card-title">{`Dia ${proximaConsulta.maiorData['data_plantao'].getDate()} do ${proximaConsulta.maiorData['data_plantao'].getMonth() + 1}`}</h5>
@@ -90,16 +90,16 @@ function Home() {
               </div>
             </div>
             <div>
-            <p className="text-info" style={{ fontSize: '1.2rem' }}>Esteja atento e não esqueça sua consulta!</p>
-            <p className="" style={{ fontSize: '1rem' }}>Pode sempre usar o sistema para relembrar e agendar novas.</p>
+              <p className="text-info" style={{ fontSize: '1.2rem' }}>Esteja atento e não esqueça sua consulta!</p>
+              <p className="" style={{ fontSize: '1rem' }}>Pode sempre usar o sistema para relembrar e agendar novas.</p>
             </div>
-          
-        
+
+
           </div>
         </>
       )}
 
-      {!consultas.length > 0 && (
+      {!consultas.length > 0 && user && (
         <div className="d-flex flex-column align-items-center p-5">
           <h1>Suas Consultas</h1>
           <h5>Você não possui consultas</h5>
@@ -110,7 +110,8 @@ function Home() {
 
       {!user && (
         <div className="d-flex flex-column align-items-center p-5">
-          <h5>Carregando...</h5>
+          <h5>Não há nada por enquanto...</h5>
+          <p className="text-info" style={{ fontSize: "1.1rem" }}>Crie uma conta para usar o sistema.</p>
         </div>
       )}
 

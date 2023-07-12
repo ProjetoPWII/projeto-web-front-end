@@ -42,7 +42,7 @@ import { AuthMedProvider, AuthMedContext } from "./context/AuthMedContext";
 
 export default function AppRoutes() {
 
-  const { user } = useContext(AuthPacienteContext)
+  const { user, isAuthenticated } = useContext(AuthPacienteContext)
   const {userDoctor} = useContext(AuthMedContext)
 
 
@@ -60,7 +60,7 @@ export default function AppRoutes() {
                 <Route path="*" element={<Error />} />
 
                 {/* Rotas referente aos pacientes */}
-                <Route path="/userProfile" element={user ? <Profile /> : <Error />} />
+                <Route path="/userProfile" element={<Profile />} />
                 <Route path="/medication" element={<Medication />} />
                 <Route path="/consultation" element={<Consultation />} />
                 <Route path="/tickets" element={<Tickets />} />
@@ -79,11 +79,11 @@ export default function AppRoutes() {
                 <Route path="/login/médico" element={<DoctorLogin/>} />
                 <Route
                   path="/doctorConsultations"
-                  element={<DoctorConsultation />}
+                  element={ userDoctor? <DoctorConsultation /> : <Error/>}
                 />
-                <Route path="/doctorShifts" element={<DoctorShifts />} />
-                <Route path="/prescriptions" element={<DoctorPrescriptions />} />
-                <Route path="/doctorMedications" element={<DoctorMedications />} />
+                <Route path="/doctorShifts" element={ userDoctor? <DoctorShifts /> : <Error/>} />
+                <Route path="/prescriptions" element={ userDoctor? <DoctorPrescriptions /> : <Error/>} />
+                <Route path="/doctorMedications" element={userDoctor? <DoctorMedications /> : <Error/>} />
                 <Route path="/patientStatus" element={<PatientStatus />} />
               </Routes>
             </Container>
