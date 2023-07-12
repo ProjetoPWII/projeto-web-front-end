@@ -34,13 +34,11 @@ const PatientAddress = () => {
     try {
       const resp = await apiClient.post("/endereco", data);
       localStorage.setItem("address", JSON.stringify(resp.data));
-      // httpConfig(data, 'POST')
-      //  window.flash('Endereço cadastrado com sucesso!', 'success')
+
       toast.success("Endereço cadastrado com sucesso!");
       navigate("/register/paciente");
     } catch (error) {
       toast.error("Erro ao cadastrar endereço!");
-      //  window.flash('Erro ao cadastrar endereço!', 'error')
     }
   };
 
@@ -78,7 +76,7 @@ const PatientAddress = () => {
           required
         />
       </div>
-      <div className="col-md-6">
+      <div className="col-12">
         <label htmlFor="inputCity" className="form-label">
           Bairro:
         </label>

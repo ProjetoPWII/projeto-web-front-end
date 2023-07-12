@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
         .get(`/paciente/detail/${jwt_decode(token).numero_sus}`)
         .then((response) => {
           console.log("response", response);
-          const { nome, numero_sus, endereco_id, sexo, foto_perfil } =
+          const { nome, numero_sus, endereco_id, sexo,endereco, foto_perfil, idade } =
             response.data;
 
           setUser({
@@ -34,6 +34,8 @@ export function AuthProvider({ children }) {
             endereco_id,
             foto_perfil,
             sexo,
+            idade,
+            endereco
           });
         })
         .catch((e) => console.log(e));
