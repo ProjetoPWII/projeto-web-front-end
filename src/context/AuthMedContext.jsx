@@ -3,7 +3,7 @@ import { destroyCookie, setCookie, parseCookies } from "nookies";
 import { api } from "../api/apiClient";
 import jwt_decode from "jwt-decode";
 
-export const AuthMedContext = createContext({});
+export const AuthMedContext = createContext();
 
 export function signOutDoctor() {
   try {
@@ -24,12 +24,15 @@ export function AuthMedProvider({ children }) {
       api
         .get(`/medico/detail/${jwt_decode(token).numero_sus}`)
         .then((response) => {
-          const { nome, crm, endereco_id, sexo, foto_perfil } = response.data;
+          const { nome, crm, endereco_id, sexo, foto_perfil, endereco, idade } =
+            response.data;
 
           setUserDoctor({
             nome,
             crm,
             endereco_id,
+            endereco,
+            idade,
             sexo,
             foto_perfil,
           });
