@@ -76,25 +76,25 @@ function Navbar() {
               <FaRegIdCard size={22} color="white" />
               <Link to="/userProfile">Perfil</Link>
             </li>
-
+{/* 
             <li>
               <GiMedicinePills size={22} color="white" />
               <Link to="/medication">Medicação</Link>
-            </li>
+            </li> */}
 
             <li>
               <RiUserVoiceLine size={22} color="white" />
               <Link to="/consultation">Consultas</Link>
             </li>
 
-            <li>
+            {/* <li>
               <IoTicket size={22} color="white" />
               <Link to="/tickets">Fichas</Link>
-            </li>
+            </li> */}
 
             <li>
               <FaUserMd size={22} color="white" />
-              <Link to="/shifts">Plantões</Link>
+              <Link to="/consulta/new">Plantões</Link>
             </li>
 
             <li>

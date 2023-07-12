@@ -18,6 +18,8 @@ function DoctorShifts() {
 
   const crm = userDoctor.crm
 
+  console.log(crm)
+
 
   const handlePlantao = async (event) => {
 

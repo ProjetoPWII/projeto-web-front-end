@@ -19,6 +19,7 @@ import PatientRegister from "./pages/Patient/PatientRegister";
 import PatientAddress from "./pages/Patient/PatientAddress";
 import PatientLogin from "./pages/Patient/PatientLogin";
 import ConsultaRegister from "./pages/Patient/ConsultaRegister";
+import Consulta from "./pages/Patient/Consulta";
 
 /* Pages Médicas */
 import HomeDoctor from "./pages/Doctor/HomeDoctor";
@@ -68,6 +69,7 @@ export default function AppRoutes() {
                 <Route path="/register-endereco/paciente" element={<PatientAddress />} />
                 <Route path="/login/paciente" element={<PatientLogin />} />
                 <Route path="/consulta/new" element={<ConsultaRegister />} />
+                <Route path="/consulta/:id" element={<Consulta />} />
 
                 {/* Rotas referente aos médicos*/}
                 <Route path="/doctor" element={<HomeDoctor />} />
