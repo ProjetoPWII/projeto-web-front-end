@@ -48,7 +48,7 @@ export function AuthMedProvider({ children }) {
       // console.log('data',data)
       const response = await api.post("/loginmedico", data);
 
-      const { nome, crm, endereco_id, foto_perfil, sexo, token } =
+      const { nome, crm, endereco_id, foto_perfil, endereco,sexo, token } =
         response.data;
 
       setCookie(undefined, "@app_medico.token", token, {
@@ -60,6 +60,7 @@ export function AuthMedProvider({ children }) {
         nome,
         crm,
         endereco_id,
+        endereco,
         sexo,
         foto_perfil,
       });

@@ -67,6 +67,7 @@ function Home() {
 
   }, [consultas])
 
+  console.log('proximaConsulta',proximaConsulta)
 
   const consultaDetail = async () => {
     navigate(`/consulta/${proximaConsulta.id}`)
@@ -84,7 +85,7 @@ function Home() {
             <div style={{ width: "18rem", cursor: 'pointer' }} className="card m-2 bg-dark text-white">
               <img className="card-img-top" src="https://assets-global.website-files.com/5d3ac7a15216e366e6929e20/623c5e44f4cf108ae645f218_male%20medic%20AandE%20-01.png" alt="Card image cap" />
               <div className="card-body">
-                <h5 className="card-title">{`Dia ${proximaConsulta.maiorData['data_plantao'].getDate()} do ${proximaConsulta.maiorData['data_plantao'].getMonth() + 1}`}</h5>
+                <h5 className="card-title">{`Dia ${proximaConsulta.maiorData.getDate()} do ${proximaConsulta.maiorData.getMonth() + 1}`}</h5>
                 <p style={{ fontSize: '1.1rem' }} className="card-text text-info"><b>Médico CRM</b>{`:${proximaConsulta['crm']}`}</p>
                 <p style={{ fontSize: '1.1rem' }} className="card-text"><b>Status</b>{`:${proximaConsulta['status']}`}</p>
               </div>
