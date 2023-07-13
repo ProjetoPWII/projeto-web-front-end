@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
       // console.log('data',data)
       const response = await api.post("/login", data);
 
-      const { nome, numero_sus, endereco_id, token, sexo, foto_perfil } =
+      const { nome, numero_sus, endereco_id, token, sexo,idade, foto_perfil } =
         response.data;
 
       setCookie(undefined, "@app_paciente.token", token, {
@@ -62,6 +62,7 @@ export function AuthProvider({ children }) {
         numero_sus,
         endereco_id,
         sexo,
+        idade,
         foto_perfil,
       });
 
