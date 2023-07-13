@@ -32,6 +32,8 @@ import PatientStatus from "./pages/Doctor/PatientStatus";
 import DoctorAddress from "./pages/Doctor/DoctorAdress";
 import DoctorRegister from "./pages/Doctor/DoctorRegister";
 import DoctorLogin from "./pages/Doctor/DoctorLogin";
+import DoctorConsulta from "./pages/Doctor/DoctorConsulta";
+import DoctorConsultaDetail from "./pages/Doctor/DoctorConsultaDetail";
 
 /* Contexts */
 import { DarkModeProvider } from "./context/DarkModeContext";
@@ -87,9 +89,11 @@ export default function AppRoutes() {
             <Route path="/register/médico" element={<DoctorRegister />} />
             <Route path="/login/médico" element={<DoctorLogin />} />
             <Route
-              path="/doctorConsultations"
-              element={userDoctor ? <DoctorConsultation /> : <Error />}
+              path="/doctorConsultations/:id"
+              element={userDoctor ? <DoctorConsulta /> : <Error />}
             />
+
+            <Route path="doctorConsultations/:id/consulta/detail/:id" element={<DoctorConsultaDetail />} />
             <Route
               path="/doctorShifts"
               element={userDoctor ? <DoctorShifts /> : <Error />}

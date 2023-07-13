@@ -116,30 +116,30 @@ function Navbar() {
               <Link to="/profileDoctor">Perfil</Link>
             </li>
 
-            <li>
+            {/* <li>
               <RiUserVoiceLine size={22} color="white" />
               <Link to="/doctorConsultations">Consultas</Link>
-            </li>
+            </li> */}
 
             <li>
               <FaUserMd size={22} color="white" />
               <Link to="/doctorShifts">Plantões</Link>
             </li>
 
-            <li>
+            {/* <li>
               <FaFileSignature size={22} color="white" />
               <Link to="/prescriptions">Prescrições</Link>
-            </li>
+            </li> */}
 
             <li>
               <GiMedicinePills size={22} color="white" />
               <Link to="/doctorMedications">Medicações</Link>
             </li>
 
-            <li>
+            {/* <li>
               <TbUserHeart size={22} color="white" />
               <Link to="/patientStatus">Status do Paciente</Link>
-            </li>
+            </li> */}
 
             <li>
               <Button onClick={makeDoctorLogout}>
