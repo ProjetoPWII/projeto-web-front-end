@@ -39,6 +39,7 @@ const DoctorConsultaDetail = () => {
 
     }, [])
 
+    console.log(medicacaoSelected)
 
 
 
@@ -47,8 +48,8 @@ const DoctorConsultaDetail = () => {
 
         const status = {
             observacoes,
-            pressao_arterial:parseInt(pressao),
-            peso:parseInt(peso),
+            pressao_arterial:parseFloat(pressao),
+            peso:parseFloat(peso),
             id_consulta:param.id
         }
 
@@ -65,12 +66,14 @@ const DoctorConsultaDetail = () => {
             await apiClient.post('/status/update',status)
             const pres = await apiClient.post('/prescricao/edit',prescricoes)
             const med = medicacoes.filter(med => med['nome']==medicacaoSelected)
+            console.log(med)
             const presMed = {
                 id_prescricao:pres.data.id,
                 qtde_caixas:parseInt(caixas),
                 id_medicacao:med[0].id
             }
             console.log(presMed)
+
             await apiClient.post('/medicacoes-prescritas', presMed)
             toast.success('Informações salvas!')
             navigate('/profileDoctor')

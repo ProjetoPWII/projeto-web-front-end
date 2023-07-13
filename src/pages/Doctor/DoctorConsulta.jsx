@@ -20,7 +20,7 @@ const DoctorConsulta = () => {
             console.log(resp2.data)
 
             const med = resp2.data.filter(med=>med['prescricao'].id_consulta==param.id)
-            console.log(med)
+            console.log('med:',med)
             setMedicacoes(med)
         }
 
@@ -28,7 +28,7 @@ const DoctorConsulta = () => {
 
     }, [])
 
-    //console.log(medicacoes)
+    console.log('medicacoes',medicacoes)
 
     return (
         <>
@@ -59,13 +59,16 @@ const DoctorConsulta = () => {
                                 <b>Orientações de medicação: </b>
                                 {consulta['Prescricoes'].length > 0 && (
                                     consulta['Prescricoes'].map(prescricao => (
-                                        <>
+                                        <div>
                                             <p className='text-primary'>
-                                                {`${prescricao.orientacoes}:${medicacoes[0].medicacao.nome}`}
+                                                {`${prescricao.orientacoes}`}
                                             </p>
+                                            {medicacoes.map((medicacao, index)=>(
+                                                <p>{medicacao.medicacao.nome}</p>
+                                            ))}
                                             {/* <p>{medicacoes[0].medicacao.nome}</p> */}
                                             <p>Houve Atestado:{prescricao.atestado_medico?"Sim":"Não"}</p>
-                                        </>
+                                        </div>
 
                                     ))
                                 )}
